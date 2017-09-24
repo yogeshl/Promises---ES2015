@@ -56,4 +56,11 @@
 7. If any of the iterable promises reject, then the "all" promise rejects with the value of the promise which rejected first.
 8. The "all" promise does not control the iterable promises, it merely observes them.
 
+## Promise Racing
+1. The "race" function is a static function on the "Promise" class
+2. The "race" function is invoked with an iterable of promise objects and returns  a new pending promise.
+3. When one of the iterable promises resolves, the "race" promise is resolved with that value.
+4. This can be especially useful for configuring timeouts for when an async operation takes too long to complete.
+5. All of the iterable promises will resolve or reject as appropriate even after the "race" promise has resolved.
+
 

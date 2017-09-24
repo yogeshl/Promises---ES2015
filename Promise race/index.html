@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+
+        let asyncCounter =0;
+        const doAsync = (doesResolve,timeout) => new Promise((resolve, reject)=>{
+            let counter = asyncCounter++;
+            setTimeout(() => {
+                if(doesResolve){
+                    console.log({msg:'success',data:counter});
+                    resolve({msg:'success',data:counter});
+                }
+                else{
+                    console.log({msg:'failure',data:counter});
+                    reject({msg:'failure',data:counter});
+                }
+            },timeout);
+        });
+
+        Promise.race([doAsync(true, 2000), doAsync(true, 1000)])
+        .then( (results) => {
+             console.log('Race : %o' , results);
+        });
+    </script>
+</body>
+
+</html>
