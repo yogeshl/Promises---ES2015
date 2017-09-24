@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+   <script>
+       'use strict';
+
+        //Promise - resolved
+        const p1 = new Promise((resolve, reject)=>{
+              setTimeout(()=>{
+                  resolve();
+              },2000);
+        });
+
+        console.log('Waiting....');
+        p1.then(()=>{
+            console.log('Promise is resolved.');
+        });
+
+
+        //Promise -rejected
+        const p2 = new Promise((resolve, reject)=>{
+              setTimeout(()=>{
+                  reject();
+              },2000);
+        });
+
+        console.log('Waiting....');
+        p2.then(()=>{},()=>{
+            console.log('Promise is rejected.');
+        });
+       
+        //Promise - handling rejection better way
+        const p3 = new Promise((resolve, reject)=>{
+              setTimeout(()=>{
+                  reject();
+              },2000);
+        });
+        
+        console.log('Waiting....');
+        p3
+        .then(()=>{
+            console.log('Promise is resolved.');
+        })
+        .catch(()=>{
+            console.log('Promise is rejected.');
+        });
+
+        //Promise - Passing data
+        const p4 = new Promise((resolve, reject)=>{
+              setTimeout(()=>{
+                  resolve('Success!');
+              },2000);
+        });
+        
+        console.log('Waiting....');
+        p4
+        .then((result)=>{
+            console.log('Promise is resolved. DATA ' + result);
+        })
+        .catch(()=>{
+            console.log('Promise is rejected.');
+        });
+       
+
+       //Inspecting Promise object
+       console.log(Promise.resolve('Success'));
+       console.log(Promise.reject('Failure'));
+       Promise.reject('Failure').catch((results)=>{
+          console.log(results);
+       }); 
+
+   </script> 
+</body>
+</html>
