@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+       'use strict';
+
+        let asyncCounter =0;
+        const doAsync = (doesResolve) => new Promise((resolve, reject)=>{
+            let counter = ++asyncCounter;
+            setTimeout(() => {
+                if(doesResolve){
+                    console.log({msg:'success',data:counter});
+                    resolve({msg:'success',data:counter});
+                }
+                else{
+                    console.log({msg:'failure',data:counter});
+                    reject({msg:'failure',data:counter});
+                }
+            },2000);
+        });
+
+        doAsync(true)
+        .then(() => doAsync(true))   
+        .then(() => doAsync(false))   
+        .then(() => doAsync(true))   
+        .catch(err=>{
+            console.log(err);
+        })
+        .then(()=>{
+            console.log('finally block');
+        },
+        ()=>{
+            console.log('finally block');
+        })   
+
+    </script>
+</body>
+
+</html>

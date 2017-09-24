@@ -36,3 +36,12 @@
 3. When the callback for the  first operation executes, it launches the 2nd operation.
 4. When chaining many async operations, managing the nesting of many async callback functions is challenging and results in the "pyramid of doom" issue.
 5. Promises help solve this problem by allowing multiple async operations to be chained with the "then" function.
+
+
+## Handling Async Errors
+1. try,catch, finally - does not support async operations. It works with sync code only.
+2. Traditional callback mechanism would either provide an error object parameter (ex. nodejs programming) in the call back function, or non Promise-API mechanism for registering the error callback function.
+3. Both mechanisms are sufficient for a single async operation, but are difficult to use with multiple async operations.
+4. With Promises, the concept of rejected promise lends itself to async error handling.
+5. The "then" registered function represents the "try-block" and the "catch" registed function represents the "catch-block", the "finally-block" can be created with a final "then" registed function at the end of the promise chain.
+
