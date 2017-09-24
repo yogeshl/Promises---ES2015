@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+       'use strict';
+      
+        const p = new Promise((resolve)=>{
+            setTimeout(()=>{
+                console.log('a');
+                resolve('a is done');
+            },2000);
+        });
+
+        p.then(results=>{
+            console.log(results);
+            return new Promise(resolve=>{
+                  setTimeout(()=>{
+                      console.log('b');
+                      resolve('b is done');
+                      
+                  },2000);
+            });
+        })
+        .then(results=>{
+            console.log(results);
+            console.log('all done');
+        });
+        console.log('waiting..');
+        
+    </script>
+</body>
+</html>

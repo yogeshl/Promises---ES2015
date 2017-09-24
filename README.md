@@ -29,3 +29,10 @@
 1. A promise only resolves or rejects once, whereas events fire multiple times.
 2. Promises produce one of two possible results: resolve and reject, events only have a single result.
 3. Events are good example for an Observable, while REST service requests are a good example of a  Promise.
+
+## Sequential Async Operations
+1. Many times one async operation depends upon the data from the completion of another async operation
+2. To code fot this relationship, the nesting of callback of functions is required.
+3. When the callback for the  first operation executes, it launches the 2nd operation.
+4. When chaining many async operations, managing the nesting of many async callback functions is challenging and results in the "pyramid of doom" issue.
+5. Promises help solve this problem by allowing multiple async operations to be chained with the "then" function.
