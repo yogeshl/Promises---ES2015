@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+
+        let asyncCounter =0;
+        const doAsync = (doesResolve,timeout) => new Promise((resolve, reject)=>{
+            let counter = asyncCounter++;
+            setTimeout(() => {
+                if(doesResolve){
+                    console.log({msg:'success',data:counter});
+                    resolve({msg:'success',data:counter});
+                }
+                else{
+                    console.log({msg:'failure',data:counter});
+                    reject({msg:'failure',data:counter});
+                }
+            },timeout);
+        });
+
+       //Resolve - scenario
+        const p1 =doAsync(true, 2000);
+        const p2 =doAsync(true, 1000);
+        const p3 =doAsync(true, 3000);
+        
+        Promise.all([p1,p2,p3]).then(results =>{
+            console.log('all done');
+            console.log(results);
+        });
+
+        //Reject - scenario
+        /*const p4 =doAsync(true, 2000);
+        const p5 =doAsync(false, 1000);
+        const p6 =doAsync(true, 3000);
+        
+        Promise.all([p4,p5,p6]).then(results =>{
+            console.log('all done');
+            console.log(results);
+        }).catch(results =>{
+            console.log('one failed');
+            console.log(results);
+        });*/
+
+    </script>
+</body>
+
+</html>

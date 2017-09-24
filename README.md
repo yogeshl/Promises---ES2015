@@ -45,3 +45,15 @@
 4. With Promises, the concept of rejected promise lends itself to async error handling.
 5. The "then" registered function represents the "try-block" and the "catch" registed function represents the "catch-block", the "finally-block" can be created with a final "then" registed function at the end of the promise chain.
 
+## Concurrent Async operations
+1. Many times its useful to launch multiple async operations at the same time.
+2. While the callbacks  will execute sequentially, the async request can be executed concurrently by the multi-threaded environment surrounding javascript ( browser or node js)
+3. The challenge with tracking multiple requests is that callbacks cannot be nested as they can be with seq operations, because they all need to be launched at the same time.
+4. To facilitate tracking, a counter or some other mechanism can be used , but it is difficult and error prone to implement.
+4. To solve this problem, the "Promise" class has a static function named "all" which receives an iterable of promises.
+5. The "all" function itself returns an unfullfilled promise.
+6. When all of the iterable promises are resolved, the "all" promise resolves with an array of all of the resolve values of the iterable promises.
+7. If any of the iterable promises reject, then the "all" promise rejects with the value of the promise which rejected first.
+8. The "all" promise does not control the iterable promises, it merely observes them.
+
+

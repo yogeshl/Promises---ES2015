@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+
+         let callbackCounter =0;
+
+         callbackCounter++;
+         setTimeout(()=>{
+             console.log('a');
+             callbackCounter--;
+             if(callbackCounter === 0){
+                 allDone();
+             }
+         },2000);
+
+         callbackCounter++;
+         setTimeout(()=>{
+             console.log('b');
+             callbackCounter--;
+             if(callbackCounter === 0){
+                 allDone();
+             }
+         },1000);
+
+         callbackCounter++;
+         setTimeout(()=>{
+             console.log('c');
+             callbackCounter--;
+             if(callbackCounter === 0){
+                 allDone();
+             }
+         },3000);
+
+         const allDone = () => {
+             console.log('all done');
+         };
+
+    </script>
+</body>
+
+</html>
